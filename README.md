@@ -21,10 +21,10 @@ The solution is implemented entirely in **BigQuery ML**, demonstrating how scala
 
 Accurate prediction of ICU LOS enables healthcare providers to:
 
-- Optimize **ICU bed utilization**
-- Improve **staffing and resource planning**
-- Reduce **patient flow bottlenecks**
-- Support **cost-efficient hospital operations**
+- 🏥 **ICU Operations:** Optimize ICU bed utilization  
+- 👩‍⚕️ **Staffing & Resources:** Improve planning and allocation  
+- 🔄 **Patient Flow:** Reduce bottlenecks and delays  
+- 💰 **Cost Efficiency:** Support cost-effective hospital operations  
 
 This type of solution is directly applicable to healthcare systems such as **M42**, **Cleveland Clinic Abu Dhabi**, and other data-driven hospitals.
 
@@ -68,8 +68,9 @@ Key features include:
 
 ## 📈 Results
 
-- **Mean Absolute Error (MAE): 1.76 days**
-- Median Absolute Error: 0.95 days  
+- ✅ **MAE:** 1.76 days  
+- 📊 **Median Error:** 0.95 days  
+- ⚠️ **Max Error:** 34.3 days   
 
 - The model predicts ICU Length of Stay with high accuracy, with most predictions within **1 day of actual values**.
 - Larger errors are primarily driven by extreme long-stay cases, which are inherently more difficult to model.
@@ -106,11 +107,29 @@ sql/
 ├── 09_analyze_feature_importance.sql
 ```
 ## ▶️ How to Run
-Load MIMIC-IV data into BigQuery
-Execute SQL scripts sequentially:
-Data extraction → cleaning → feature engineering
-Train the model using BigQuery ML
-Generate predictions and evaluate performance
+1. 📥 **Load Data**
+   - Import MIMIC-IV dataset into BigQuery  
+
+2. 🧹 **Run Data Pipeline**
+   - Execute SQL scripts in order:
+     - `01_extract_data.sql`
+     - `02_clean_data.sql`
+     - `03_build_dataset.sql`
+     - `04_engineer_features.sql`
+     - `05_finalize_features.sql`
+
+3. 🤖 **Train Model**
+   - Run `06_train_model_log.sql` using BigQuery ML  
+
+4. 📊 **Generate Predictions**
+   - Execute `07_generate_predictions.sql`  
+
+5. 📈 **Evaluate Performance**
+   - Run `08_evaluate_model_mae.sql`  
+   - Review MAE and error metrics  
+
+6. 🔍 **Analyze Results**
+   - Execute `09_analyze_feature_importance.sql`  
 
 ## 🚀 Future Improvements
 Compare with advanced models (e.g., XGBoost, Random Forest)
