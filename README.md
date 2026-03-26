@@ -1,5 +1,14 @@
 # ICU Length of Stay Prediction (MIMIC-IV)
 
+## 🛠️ Tools & Technologies
+
+![BigQuery](https://img.shields.io/badge/BigQuery-ML-blue)
+![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
+![Machine Learning](https://img.shields.io/badge/ML-Regression-orange)
+![Healthcare](https://img.shields.io/badge/Domain-Healthcare-red)
+![MIMIC-IV](https://img.shields.io/badge/Dataset-MIMIC--IV-purple)
+![Status](https://img.shields.io/badge/status-production--ready-green)
+
 ## 📌 Project Overview
 This project develops a machine learning pipeline to predict **ICU Length of Stay (LOS)** using clinical and administrative features from the MIMIC-IV dataset.
 
@@ -74,10 +83,6 @@ sql/
 ├── 09_analyze_feature_importance.sql
 ```
 
-## 🛠️ Tools & Technologies
-Google BigQuery ML
-SQL
-MIMIC-IV clinical dataset
 
 ## 🚀 Future Improvements
 Compare with advanced models (e.g., XGBoost, Random Forest)
