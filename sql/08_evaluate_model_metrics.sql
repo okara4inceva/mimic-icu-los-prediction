@@ -4,7 +4,7 @@
 -- Note: Project and dataset names are anonymized for sharing.
 -- Author: Olga Karachyntseva
 -- ============================================
-
+-- Example query (project name anonymized for sharing)
 SELECT
   mean_absolute_error AS mae,
   mean_squared_error AS mse,
