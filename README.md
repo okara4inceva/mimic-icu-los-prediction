@@ -71,7 +71,7 @@ sql/
 ├── 06_train_model_log.sql
 ├── 07_generate_predictions.sql
 ├── 08_evaluate_model_mae.sql
-├── 09_analyze_feature_importance.sql
+├── 09_analyze_feature_importance.sql```
 
 ## 🛠️ Tools & Technologies
 Google BigQuery ML
