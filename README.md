@@ -1,6 +1,4 @@
-# ICU Length of Stay Prediction (MIMIC-IV)
-
-## 🛠️ Tools & Technologies
+# ICU Length of Stay Prediction using BigQuery ML (MIMIC-IV)
 
 ![BigQuery](https://img.shields.io/badge/BigQuery-ML-blue)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
@@ -9,62 +7,87 @@
 ![MIMIC-IV](https://img.shields.io/badge/Dataset-MIMIC--IV-purple)
 ![Status](https://img.shields.io/badge/status-production--ready-green)
 
-## 📌 Project Overview
-This project develops a machine learning pipeline to predict **ICU Length of Stay (LOS)** using clinical and administrative features from the MIMIC-IV dataset.
+---
 
-The objective is to support **hospital resource optimization**, including:
-- ICU bed management
-- Staffing planning
-- Cost and operational efficiency
+## 📌 Project Overview
+
+This project develops an **end-to-end machine learning pipeline** to predict **ICU Length of Stay (LOS)** using clinical and administrative data from the **MIMIC-IV dataset**.
+
+The solution is implemented entirely in **BigQuery ML**, demonstrating how scalable SQL-based ML can be used in healthcare analytics.
 
 ---
 
-## 🎯 Business Relevance
-Accurate prediction of ICU LOS can help healthcare providers:
-- Reduce overcrowding and delays in care
-- Improve patient flow and discharge planning
-- Optimize allocation of critical care resources
+## 🎯 Business Impact
+
+Accurate prediction of ICU LOS enables healthcare providers to:
+
+- Optimize **ICU bed utilization**
+- Improve **staffing and resource planning**
+- Reduce **patient flow bottlenecks**
+- Support **cost-efficient hospital operations**
+
+This type of solution is directly applicable to healthcare systems such as **M42**, **Cleveland Clinic Abu Dhabi**, and other data-driven hospitals.
 
 ---
 
 ## 📊 Dataset
-- Source: **MIMIC-IV (PhysioNet)**
-- Population: ICU patients
-- Target variable: Length of Stay (LOS) in days
-- Transformation: Log transformation applied to handle right-skewed distribution
+
+- **Source:** MIMIC-IV (PhysioNet)
+- **Population:** ICU patients
+- **Target Variable:** Length of Stay (LOS) in days
+- **Challenge:** Right-skewed distribution of LOS
+
+✔ **Solution:** Applied log transformation to stabilize variance and improve model performance
 
 ---
 
 ## ⚙️ Methodology
 
 ### 1. Data Processing
-- Extraction of ICU stays
-- Cleaning of missing and invalid values
-- Filtering LOS between 0 and 30 days
+- Extracted ICU stays from raw clinical tables
+- Cleaned missing and inconsistent values
+- Filtered LOS between 0–30 days to remove extreme outliers
 
 ### 2. Feature Engineering
 Key features include:
-- Demographics: age, gender
-- Clinical context: admission type, care unit
-- Clinical complexity: number of procedures
-- Diagnosis grouping
+- Demographics: age, gender  
+- Clinical context: admission type, care unit  
+- Clinical complexity: number of procedures  
+- Diagnosis grouping  
 
 ### 3. Model Development
-- Model: Linear Regression (BigQuery ML)
-- Target: Log-transformed LOS
-- Rationale: Improve stability and predictive performance
+- **Model:** Linear Regression (BigQuery ML)
+- **Target:** Log-transformed LOS
+- **Rationale:** Improve stability and handle skewed distribution
 
 ### 4. Evaluation
-- Metric: Mean Absolute Error (MAE)
+- Metric: **Mean Absolute Error (MAE)**
 - Evaluation performed on predicted vs actual LOS
 
-### 5. Model Interpretation
-- Feature importance analysis to identify key drivers of ICU stay duration
+---
+
+## 📈 Results
+
+- **Mean Absolute Error (MAE): 1.76 days**
+- Median Absolute Error: 0.95 days  
+
+- The model predicts ICU Length of Stay with high accuracy, with most predictions within **1 day of actual values**.
+- Larger errors are primarily driven by extreme long-stay cases, which are inherently more difficult to model.
+- Model trained using log-transformed LOS to improve robustness against skewed distribution
+  
+### 🔍 Key Predictive Features
+- Admission type  
+- Number of procedures  
+- Care unit  
+- Patient demographics  
 
 ---
 
 ## 🧠 Key Insight
-Applying log transformation to LOS improves model performance by addressing skewness commonly observed in ICU stay distributions.
+
+Applying a **log transformation** to ICU LOS improves model performance by addressing the strong right-skew commonly observed in hospital stay data.
+
+This simple transformation leads to **more reliable and stable predictions**, especially for longer stays.
 
 ---
 
@@ -82,7 +105,12 @@ sql/
 ├── 08_evaluate_model_mae.sql
 ├── 09_analyze_feature_importance.sql
 ```
-
+## ▶️ How to Run
+Load MIMIC-IV data into BigQuery
+Execute SQL scripts sequentially:
+Data extraction → cleaning → feature engineering
+Train the model using BigQuery ML
+Generate predictions and evaluate performance
 
 ## 🚀 Future Improvements
 Compare with advanced models (e.g., XGBoost, Random Forest)
