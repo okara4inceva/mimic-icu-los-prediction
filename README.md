@@ -138,5 +138,5 @@ External validation on other hospital datasets
 Integration into hospital dashboards (e.g., Power BI)
 
 ## 👩‍💻 Author
-Olga Karachyntseva
-Health Economics & Data Analytics | Healthcare AI/ML
+**Olga Karachyntseva**  
+Health Economics & Data Analytics | Healthcare ML
