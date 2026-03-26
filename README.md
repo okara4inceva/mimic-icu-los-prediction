@@ -83,6 +83,22 @@ Key features include:
 - Patient demographics  
 
 ---
+## 📊 Dashboard (Power BI)
+
+A conceptual dashboard was designed to translate model outputs into actionable insights for hospital decision-makers.
+
+Key features:
+- ICU Length of Stay trends and predictions  
+- Model performance monitoring (MAE, error distribution)  
+- Identification of high-risk long-stay patients  
+- Support for resource planning and operational efficiency  
+
+Tools:
+- Power BI  
+- Google BigQuery integration
+
+ ![Dashboard](images/dashboard.png)
+---
 
 ## 🧠 Key Insight
 
