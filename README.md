@@ -139,5 +139,5 @@ Integration into hospital dashboards (e.g., Power BI)
 
 ## 👩‍💻 Author
 **Olga Karachyntseva**  
-Health Economics & Data Analytics | Healthcare ML
+**Health Economics & Data Analytics | Healthcare ML**
 Bridging clinical data, machine learning, and health economics to support data-driven decision-making in healthcare systems.
