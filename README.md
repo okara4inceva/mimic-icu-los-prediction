@@ -16,8 +16,6 @@ Accurate prediction of ICU LOS can help healthcare providers:
 - Improve patient flow and discharge planning
 - Optimize allocation of critical care resources
 
-This aligns with digital transformation initiatives in healthcare systems such as **M42**, **Cleveland Clinic Abu Dhabi**, and **Department of Health (Abu Dhabi)**.
-
 ---
 
 ## 📊 Dataset
