@@ -172,7 +172,7 @@ sql/
 ```
 ## ▶️ How to Run
 1. 📥 **Load Data**
-   - Import MIMIC-IV dataset into BigQuery  
+   - Import dataset (for this project I imported MIMIC-IV dataset) into BigQuery  
 
 2. 🧹 **Run Data Pipeline**
    - Execute SQL scripts in order:
