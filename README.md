@@ -1,4 +1,4 @@
-# ICU Length of Stay Prediction using BigQuery ML (MIMIC-IV)
+# ICU Length of Stay Prediction & Model Evaluation (MIMIC-IV, BigQuery ML)
 
 ![BigQuery](https://img.shields.io/badge/BigQuery-ML-blue)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
@@ -15,6 +15,7 @@ This project develops an **end-to-end machine learning pipeline** to predict **I
 
 The solution is implemented entirely in **BigQuery ML**, demonstrating how scalable SQL-based ML can be used in healthcare analytics.
 
+![ICU LOS Dashboard](images/dashboard.png) 
 ---
 
 ## 🎯 Business Impact
@@ -68,13 +69,14 @@ Key features include:
 
 ## 📈 Results
 
-- ✅ **MAE:** 1.76 days  
+- The model achieves good overall accuracy ✅ **MAE:** 1.76 days, but performance decreases for longer ICU stays.
 - 📊 **Median Error:** 0.95 days  
 - ⚠️ **Max Error:** 34.3 days   
 
-- The model predicts ICU Length of Stay with high accuracy, with most predictions within **1 day of actual values**.
-- Larger errors are primarily driven by extreme long-stay cases, which are inherently more difficult to model.
-- Model trained using log-transformed LOS to improve robustness against skewed distribution
+Model evaluation shows:
+- Increasing prediction variance with LOS
+- Systematic underprediction for LOS > 10 days
+- Reduced calibration for long-stay patients
   
 ### 🔍 Key Predictive Features
 - Admission type  
@@ -85,13 +87,13 @@ Key features include:
 ---
 ## 📊 Dashboard (Power BI)
 
-A conceptual dashboard was designed to translate model outputs into actionable insights for hospital decision-makers.
+A Power BI dashboard was developed to translate model outputs into actionable insights.
 
-Key features:
-- ICU Length of Stay trends and predictions  
-- Model performance monitoring (MAE, error distribution)  
-- Identification of high-risk long-stay patients  
-- Support for resource planning and operational efficiency  
+Key capabilities:
+- Visual comparison of predicted vs actual ICU LOS
+- Model calibration assessment using reference line (y = x)
+- Monitoring of prediction error metrics (MAE, max error)
+- Identification of model limitations in long-stay patients 
 
 Tools:
 - Power BI  
@@ -128,7 +130,12 @@ These insights are critical for identifying limitations of the model and guiding
 
  ![Dashboard](images/dashboard.png)
 ---
+### 💡 Why This Matters
 
+This project demonstrates how machine learning models in healthcare must be evaluated beyond accuracy metrics.
+
+Understanding where models fail — particularly in long-stay ICU patients — is critical for safe and effective real-world deployment.
+---
 ## 🧠 Key Insight
 
 Applying a **log transformation** to ICU LOS improves model performance by addressing the strong right-skew commonly observed in hospital stay data.
