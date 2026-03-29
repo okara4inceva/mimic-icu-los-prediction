@@ -1,4 +1,4 @@
-# ICU Length of Stay Prediction & Model Evaluation (MIMIC-IV, BigQuery ML)
+# ICU Length of Stay Prediction & Model Evaluation using BigQuery ML
 
 ![BigQuery](https://img.shields.io/badge/BigQuery-ML-blue)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
@@ -8,14 +8,15 @@
 ![Status](https://img.shields.io/badge/status-production--ready-green)
 
 ---
-
+![ICU LOS Dashboard](images/dashboard.png) 
+This dashboard bridges technical model outputs with clinical and operational decision-making.
+---
 ## 📌 Project Overview
 
 This project develops an **end-to-end machine learning pipeline** to predict **ICU Length of Stay (LOS)** using clinical and administrative data from the **MIMIC-IV dataset**.
 
 The solution is implemented entirely in **BigQuery ML**, demonstrating how scalable SQL-based ML can be used in healthcare analytics.
 
-![ICU LOS Dashboard](images/dashboard.png) 
 ---
 
 ## 🎯 Business Impact
@@ -69,14 +70,24 @@ Key features include:
 
 ## 📈 Results
 
-- The model achieves good overall accuracy ✅ **MAE:** 1.76 days, but performance decreases for longer ICU stays.
-- 📊 **Median Error:** 0.95 days  
-- ⚠️ **Max Error:** 34.3 days   
+The model achieves good overall performance (MAE: 1.76 days), 
+but performance decreases for longer ICU stays.
 
-Model evaluation shows:
-- Increasing prediction variance with LOS
-- Systematic underprediction for LOS > 10 days
+**Model evaluation reveals:**
+- Increasing prediction variance as LOS increases  
+- Systematic underprediction for LOS > 10 days  
 - Reduced calibration for long-stay patients
+
+   ### 🧠 Model Evaluation Approach
+
+Beyond standard error metrics, model performance was evaluated using 
+visual analysis of predicted vs actual values.
+
+A reference line (y = x) was used to assess calibration and identify 
+systematic deviations in model predictions.
+
+This approach enables deeper understanding of where the model performs well 
+and where it fails — critical for real-world healthcare applications.
   
 ### 🔍 Key Predictive Features
 - Admission type  
