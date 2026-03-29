@@ -9,7 +9,9 @@
 
 ---
 ![ICU LOS Dashboard](images/dashboard.png) 
+
 This dashboard bridges technical model outputs with clinical and operational decision-making.
+
 ---
 ## 📌 Project Overview
 
