@@ -1,13 +1,20 @@
 -- ============================================
--- Query: Feature Engineering Final (v3_fixed)
--- Description: Final feature set including number of procedures and
---              diagnosis-related variables for improved model performance.
+-- Query: Final Feature Engineering (v3_fixed)
+-- Description: Add diagnosis-group information to the engineered feature set
+-- to improve model performance and clinical interpretability.
+-- Source: MIMIC-IV (PhysioNet)
+-- Note: Dataset identifiers are anonymized for public sharing.
+-- Replace `project.dataset` with your own BigQuery environment.
 -- Author: Olga Karachyntseva
 -- ============================================
-CREATE OR REPLACE TABLE `mimic-analysis-491010.mimic_results.icu_ml_dataset_features_v3_fixed` AS
+
+CREATE OR REPLACE TABLE `project.dataset.icu_ml_dataset_features_v3_fixed` AS
+
 SELECT
   base.*,
   diag.diagnosis_group
-FROM `mimic-analysis-491010.mimic_results.icu_ml_dataset_features_v2` base
-LEFT JOIN `mimic-analysis-491010.mimic_results.diagnosis_clean_v1` diag
+
+FROM `project.dataset.icu_ml_dataset_features_v2` AS base
+
+LEFT JOIN `project.dataset.diagnosis_clean_v1` AS diag
   ON base.hadm_id = diag.hadm_id;
