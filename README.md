@@ -97,7 +97,36 @@ Tools:
 - Power BI  
 - Google BigQuery integration
 
- ![Dashboard](images/dashboard.png)
+  ### 📊 Power BI Dashboard – Model Evaluation
+
+To support interpretability and real-world adoption, a Power BI dashboard was developed to visualize model performance and prediction behavior.
+
+#### Key Visuals:
+
+- **Actual vs Predicted LOS Scatter Plot**  
+  Enables direct comparison between predicted and actual ICU length of stay.
+
+- **Reference Line (y = x)**  
+  A perfect prediction line is overlaid to assess model calibration and deviation.
+
+- **Model Performance KPIs**  
+  - Average LOS  
+  - Predicted LOS  
+  - Mean Absolute Error (MAE)  
+  - Maximum Error  
+
+- **Insight Panel**  
+  Highlights key model behavior for decision-makers.
+
+#### Key Findings:
+
+- Model shows **systematic underprediction for LOS > 10 days**
+- **Prediction variance increases** with longer ICU stays
+- Indicates **reduced model calibration for long-stay patients**
+
+These insights are critical for identifying limitations of the model and guiding further improvements.
+
+ ![Dashboard](/Users/olga/Downloads/MIMIC/dashboard.png)
 ---
 
 ## 🧠 Key Insight
