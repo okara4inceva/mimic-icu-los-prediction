@@ -1,25 +1,30 @@
 -- ============================================
 -- Query: Base ML Dataset Creation
--- Description: Combines cleaned ICU LOS data with patient demographics
---              to create the initial dataset for machine learning.
+-- Description: Combine cleaned ICU LOS data with patient demographics
+-- to create the initial dataset for machine learning.
+-- Source: MIMIC-IV (PhysioNet)
+-- Note: Dataset identifiers are anonymized for public sharing.
+-- Replace `project.dataset` with your own BigQuery environment.
 -- Author: Olga Karachyntseva
 -- ============================================
-CREATE OR REPLACE TABLE `mimic-analysis-491010.mimic_results.icu_ml_dataset_v1` AS
+
+CREATE OR REPLACE TABLE `project.dataset.icu_ml_dataset_v1` AS
+
 SELECT
   icu.subject_id,
   icu.hadm_id,
   icu.stay_id,
 
-  -- target
+  -- Target variable
   icu.los_days,
 
-  -- gender
+  -- Demographic features
   pat.gender,
 
-  -- age calculation
-  EXTRACT(YEAR FROM icu.intime) - pat.anchor_year + pat.anchor_age AS age
+  -- Approximate age at ICU stay
+  EXTRACT(YEAR FROM icu.intime) - pat.anchor_year + pat.anchor_age AS age_at_icu_admission
 
-FROM `mimic-analysis-491010.mimic_results.icu_los_clean_v1` icu
+FROM `project.dataset.icu_los_clean_v1` AS icu
 
-LEFT JOIN `physionet-data.mimiciv_3_1_hosp.patients` pat
-ON icu.subject_id = pat.subject_id;
+LEFT JOIN `project.dataset.patients` AS pat
+  ON icu.subject_id = pat.subject_id;
