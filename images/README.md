@@ -1,1 +1,0 @@
-Project visualizations and diagrams.
