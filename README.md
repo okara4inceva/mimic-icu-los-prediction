@@ -144,9 +144,9 @@ These insights are critical for identifying limitations of the model and guiding
 ---
 ### 💡 Why This Matters
 
-This project demonstrates how machine learning models in healthcare must be evaluated beyond accuracy metrics.
+- This project demonstrates how machine learning models in healthcare must be evaluated beyond accuracy metrics.
+- Understanding where models fail — particularly in long-stay ICU patients — is critical for safe and effective real-world deployment.
 
-Understanding where models fail — particularly in long-stay ICU patients — is critical for safe and effective real-world deployment.
 ---
 ## 🧠 Key Insight
 
