@@ -126,7 +126,7 @@ To support interpretability and real-world adoption, a Power BI dashboard was de
 
 These insights are critical for identifying limitations of the model and guiding further improvements.
 
- ![Dashboard](/Users/olga/Downloads/MIMIC/dashboard.png)
+ ![Dashboard](images/dashboard.png)
 ---
 
 ## 🧠 Key Insight
