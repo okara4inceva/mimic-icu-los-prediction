@@ -1,7 +1,10 @@
 -- ============================================
 -- Query: ICU LOS Raw Extraction
--- Description: Extracts ICU stay information and calculates length of stay (LOS)
---              from MIMIC-IV ICU tables.
+-- Description: Extract ICU stay records and compute length of stay (LOS) in hours
+-- from MIMIC-IV ICU tables.
+-- Source: MIMIC-IV (PhysioNet)
+-- Note: Dataset identifiers are anonymized for public sharing.
+-- Replace `project.dataset` with your own BigQuery environment.
 -- Author: Olga Karachyntseva
 -- ============================================
 SELECT
@@ -10,5 +13,5 @@ SELECT
   intime,
   outtime,
   TIMESTAMP_DIFF(outtime, intime, HOUR) AS los_hours
-FROM `physionet-data.mimiciv_3_1_icu.icustays`
+FROM `project.dataset.icustays`
 LIMIT 100;
