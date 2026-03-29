@@ -1,40 +1,45 @@
 -- ============================================
 -- Query: Feature Engineering v2
--- Description: Adds clinical and operational features including ICU type,
---              admission type, and basic patient characteristics.
+-- Description: Add clinical and operational features including ICU type,
+-- admission type, and a procedure-based severity proxy.
+-- Source: MIMIC-IV (PhysioNet)
+-- Note: Dataset identifiers are anonymized for public sharing.
+-- Replace `project.dataset` with your own BigQuery environment.
 -- Author: Olga Karachyntseva
 -- ============================================
-CREATE OR REPLACE TABLE `mimic-analysis-491010.mimic_results.icu_ml_dataset_features_v2` AS
+
+CREATE OR REPLACE TABLE `project.dataset.icu_ml_dataset_features_v2` AS
+
 SELECT
   icu.subject_id,
   icu.hadm_id,
   icu.stay_id,
 
-  -- target
+  -- Target variable
   icu.los_days,
 
-  -- demographics
+  -- Demographic features
   icu.age,
   icu.gender,
 
-  -- ICU info
-  icu2.first_careunit,
+  -- ICU context
+  icu_src.first_careunit,
 
-  -- admission
+  -- Admission context
   adm.admission_type,
 
-  -- severity proxy
+  -- Procedure-based severity proxy
   COUNT(proc.icd_code) AS num_procedures
 
-FROM `mimic-analysis-491010.mimic_results.icu_ml_dataset_clean_v1` icu
+FROM `project.dataset.icu_ml_dataset_clean_v1` AS icu
 
-LEFT JOIN `physionet-data.mimiciv_3_1_icu.icustays` icu2
-  ON icu.stay_id = icu2.stay_id
+LEFT JOIN `project.dataset.icustays` AS icu_src
+  ON icu.stay_id = icu_src.stay_id
 
-LEFT JOIN `physionet-data.mimiciv_3_1_hosp.admissions` adm
+LEFT JOIN `project.dataset.admissions` AS adm
   ON icu.hadm_id = adm.hadm_id
 
-LEFT JOIN `physionet-data.mimiciv_3_1_hosp.procedures_icd` proc
+LEFT JOIN `project.dataset.procedures_icd` AS proc
   ON icu.hadm_id = proc.hadm_id
 
 GROUP BY
@@ -44,5 +49,5 @@ GROUP BY
   icu.los_days,
   icu.age,
   icu.gender,
-  icu2.first_careunit,
+  icu_src.first_careunit,
   adm.admission_type;
