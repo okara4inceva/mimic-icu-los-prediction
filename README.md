@@ -1,9 +1,5 @@
 # ICU Length of Stay Prediction & Model Evaluation using BigQuery ML
 
-# ICU Length-of-Stay Prediction Using MIMIC-IV
-
-A retrospective proof-of-concept project exploring ICU length-of-stay prediction and its potential evaluation as AI-enabled decision support for capacity planning.
-
 ![BigQuery](https://img.shields.io/badge/BigQuery-ML-blue)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
 ![Machine Learning](https://img.shields.io/badge/ML-Regression-orange)
@@ -12,6 +8,10 @@ A retrospective proof-of-concept project exploring ICU length-of-stay prediction
 ![Status](https://img.shields.io/badge/status-production--ready-green)
 
 ---
+# ICU Length-of-Stay Prediction Using MIMIC-IV
+
+A retrospective proof-of-concept project exploring ICU length-of-stay prediction and its potential evaluation as AI-enabled decision support for capacity planning.
+
 ![ICU LOS Dashboard](images/dashboard.png) 
 
 This dashboard bridges technical model outputs with clinical and operational decision-making.
