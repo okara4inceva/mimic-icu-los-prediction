@@ -15,9 +15,12 @@ This dashboard bridges technical model outputs with clinical and operational dec
 ---
 ## 📌 Project Overview
 
-This project develops an **end-to-end machine learning pipeline** to predict **ICU Length of Stay (LOS)** using clinical and administrative data from the **MIMIC-IV dataset**.
 
-The solution is implemented entirely in **BigQuery ML**, demonstrating how scalable SQL-based ML can be used in healthcare analytics.
+This project is a retrospective proof-of-concept study using de-identified **MIMIC-IV critical care data** to explore **ICU length-of-stay (LOS)** prediction.
+
+The project demonstrates how routinely available clinical and administrative variables can be used to develop and evaluate a SQL-based prediction modeling workflow in **BigQuery ML**.
+
+This project is not intended to present a clinically ready AI tool. Instead, it uses preliminary proof-of-concept work as a foundation for further methodological development, including model validation, error analysis, decision-support framing, and evaluation of potential clinical, operational, and economic value.
 
 ---
 
