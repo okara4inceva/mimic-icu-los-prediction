@@ -8,7 +8,7 @@
 ![Status](https://img.shields.io/badge/status-production--ready-green)
 
 ---
-# ICU Length-of-Stay Prediction Using MIMIC-IV
+**ICU Length-of-Stay Prediction Using MIMIC-IV**
 
 A retrospective proof-of-concept project exploring ICU length-of-stay prediction and its potential evaluation as AI-enabled decision support for capacity planning.
 
