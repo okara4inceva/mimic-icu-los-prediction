@@ -1,5 +1,9 @@
 # ICU Length of Stay Prediction & Model Evaluation using BigQuery ML
 
+# ICU Length-of-Stay Prediction Using MIMIC-IV
+
+A retrospective proof-of-concept project exploring ICU length-of-stay prediction and its potential evaluation as AI-enabled decision support for capacity planning.
+
 ![BigQuery](https://img.shields.io/badge/BigQuery-ML-blue)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
 ![Machine Learning](https://img.shields.io/badge/ML-Regression-orange)
@@ -24,7 +28,7 @@ This project is not intended to present a clinically ready AI tool. Instead, it 
 
 ---
 
-## 🎯 Business Impact
+## 🎯 Research and Operational Relevance
 
 Accurate prediction of ICU LOS enables healthcare providers to:
 
@@ -32,6 +36,8 @@ Accurate prediction of ICU LOS enables healthcare providers to:
 - 👩‍⚕️ **Staffing & Resources:** Improve planning and allocation  
 - 🔄 **Patient Flow:** Reduce bottlenecks and delays  
 - 💰 **Cost Efficiency:** Support cost-effective hospital operations  
+
+This proof-of-concept may be relevant to data-driven hospital systems interested in ICU capacity planning, patient flow, staffing, and resource allocation. However, further validation, workflow evaluation, and prospective testing would be required before any clinical or operational implementation.
 
 ---
 
@@ -73,8 +79,7 @@ Key features include:
 
 ## 📈 Results
 
-The model achieves good overall performance (MAE: 1.76 days), 
-but performance decreases for longer ICU stays.
+The preliminary model achieved an MAE of 1.76 days in this retrospective analysis. However, performance was weaker for longer ICU stays, highlighting the importance of subgroup analysis, error interpretation, and careful evaluation before any real-world use.
 
 **Model evaluation reveals:**
 - Increasing prediction variance as LOS increases  
@@ -194,13 +199,33 @@ sql/
    - Review MAE and error metrics  
 
 6. 🔍 **Analyze Results**
-   - Execute `09_analyze_feature_importance.sql`  
+   - Execute `09_analyze_feature_importance.sql`
+  
+ ## Limitations
+
+- This is a retrospective analysis based on de-identified MIMIC-IV data.
+- The model has not been externally validated on another hospital dataset.
+- The project does not evaluate real-world clinical implementation.
+- Prediction accuracy does not automatically translate into clinical, operational, or economic value.
+- Long-stay ICU patients remain more difficult to predict, which is important because they may be the most operationally relevant group for capacity planning.
+- Further work is needed to assess workflow integration, decision impact, health economic value, and prospective performance.
 
 ## 🚀 Future Improvements
 Compare with advanced models (e.g., XGBoost, Random Forest)
 Include time-series clinical variables (vitals, labs)
 External validation on other hospital datasets
 Integration into hospital dashboards (e.g., Power BI)
+
+## Next Research Direction
+
+The next stage of this work is to move beyond prediction accuracy and develop a methodological framework for evaluating the potential value of AI-enabled ICU decision support.
+
+Future work may include:
+
+- Translating ICU LOS predictions into decision-support categories, such as low, medium, and high expected length of stay;
+- Identifying operational outcomes relevant to ICU capacity planning, such as delayed discharge, bed availability, staffing pressure, and patient flow;
+- Exploring whether cost-consequence analysis or budget impact logic could be used to assess potential economic value;
+- Defining the methodological requirements for future external validation and prospective hospital-based pilot evaluation.
 
 ## 👩‍💻 Author
 **Olga Karachyntseva**  
