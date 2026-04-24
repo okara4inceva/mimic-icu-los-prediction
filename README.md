@@ -30,8 +30,6 @@ Accurate prediction of ICU LOS enables healthcare providers to:
 - 🔄 **Patient Flow:** Reduce bottlenecks and delays  
 - 💰 **Cost Efficiency:** Support cost-effective hospital operations  
 
-This type of solution is directly applicable to healthcare systems such as **M42**, **Cleveland Clinic Abu Dhabi**, and other data-driven hospitals.
-
 ---
 
 ## 📊 Dataset
