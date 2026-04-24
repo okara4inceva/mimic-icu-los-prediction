@@ -5,7 +5,7 @@
 ![Machine Learning](https://img.shields.io/badge/ML-Regression-orange)
 ![Healthcare](https://img.shields.io/badge/Domain-Healthcare-red)
 ![MIMIC-IV](https://img.shields.io/badge/Dataset-MIMIC--IV-purple)
-![Status](https://img.shields.io/badge/status-production--ready-green)
+![Status](https://img.shields.io/badge/status-research--prototype-green)
 
 ---
 **ICU Length-of-Stay Prediction Using MIMIC-IV**
@@ -30,12 +30,12 @@ This project is not intended to present a clinically ready AI tool. Instead, it 
 
 ## 🎯 Research and Operational Relevance
 
-Accurate prediction of ICU LOS enables healthcare providers to:
+ICU LOS prediction may support future research on how hospitals could improve:
 
-- 🏥 **ICU Operations:** Optimize ICU bed utilization  
-- 👩‍⚕️ **Staffing & Resources:** Improve planning and allocation  
-- 🔄 **Patient Flow:** Reduce bottlenecks and delays  
-- 💰 **Cost Efficiency:** Support cost-effective hospital operations  
+- **ICU Operations:** ICU bed utilisation and capacity planning
+- **Staffing & Resources:** Planning and allocation of clinical resources
+- **Patient Flow:** Identification of potential bottlenecks and delays
+- **Cost Efficiency:** Exploratory assessment of resource use and economic value
 
 This proof-of-concept may be relevant to data-driven hospital systems interested in ICU capacity planning, patient flow, staffing, and resource allocation. However, further validation, workflow evaluation, and prospective testing would be required before any clinical or operational implementation.
 
@@ -156,9 +156,9 @@ These insights are critical for identifying limitations of the model and guiding
 ---
 ## 🧠 Key Insight
 
-Applying a **log transformation** to ICU LOS improves model performance by addressing the strong right-skew commonly observed in hospital stay data.
+Applying a log transformation to ICU LOS helped address the right-skewed distribution commonly observed in hospital length-of-stay data.
 
-This simple transformation leads to **more reliable and stable predictions**, especially for longer stays.
+However, long-stay ICU patients remained more difficult to predict, highlighting the importance of subgroup analysis, calibration assessment, and careful interpretation before considering any real-world use.
 
 ---
 
@@ -210,18 +210,15 @@ sql/
 - Long-stay ICU patients remain more difficult to predict, which is important because they may be the most operationally relevant group for capacity planning.
 - Further work is needed to assess workflow integration, decision impact, health economic value, and prospective performance.
 
-## 🚀 Future Improvements
-Compare with advanced models (e.g., XGBoost, Random Forest)
-Include time-series clinical variables (vitals, labs)
-External validation on other hospital datasets
-Integration into hospital dashboards (e.g., Power BI)
-
-## Next Research Direction
+## 🚀Future Research Direction
 
 The next stage of this work is to move beyond prediction accuracy and develop a methodological framework for evaluating the potential value of AI-enabled ICU decision support.
 
 Future work may include:
 
+- Strengthening model validation and calibration assessment;
+- Comparing alternative modeling approaches, such as XGBoost or Random Forest;
+- Including time-series clinical variables, such as vital signs and laboratory results;
 - Translating ICU LOS predictions into decision-support categories, such as low, medium, and high expected length of stay;
 - Identifying operational outcomes relevant to ICU capacity planning, such as delayed discharge, bed availability, staffing pressure, and patient flow;
 - Exploring whether cost-consequence analysis or budget impact logic could be used to assess potential economic value;
