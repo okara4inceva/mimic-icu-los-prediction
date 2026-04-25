@@ -27,6 +27,14 @@ The project demonstrates how routinely available clinical and administrative var
 This project is not intended to present a clinically ready AI tool. Instead, it uses preliminary proof-of-concept work as a foundation for further methodological development, including model validation, error analysis, decision-support framing, and evaluation of potential clinical, operational, and economic value.
 
 ---
+## Important Note
+
+This project is a retrospective, educational, and methodological proof-of-concept using de-identified MIMIC-IV critical care data. It is not intended for clinical decision-making and has not been prospectively implemented, externally validated, or tested in a real-world hospital workflow.
+
+The purpose of this project is to explore prediction modelling methods and to identify how ICU length-of-stay predictions could potentially be evaluated for clinical, operational, and economic value in future research.
+
+---
+
 ## Data Readiness and Real-World Implementation
 
 This project uses MIMIC-IV, a structured and de-identified critical care research dataset. While this supports proof-of-concept modeling, real-world deployment of ICU prediction tools would require careful assessment of data readiness.
