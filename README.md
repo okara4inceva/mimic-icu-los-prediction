@@ -22,7 +22,7 @@ This dashboard bridges technical model outputs with clinical and operational dec
 
 This project is a retrospective proof-of-concept study using de-identified **MIMIC-IV critical care data** to explore **ICU length-of-stay (LOS)** prediction.
 
-The project demonstrates how routinely available clinical and administrative variables can be used to develop and evaluate a SQL-based prediction modeling workflow in **BigQuery ML**.
+The project demonstrates how routinely available clinical and administrative variables can be used to develop and evaluate a SQL-based prediction modelling workflow in **BigQuery ML**.
 
 This project is not intended to present a clinically ready AI tool. Instead, it uses preliminary proof-of-concept work as a foundation for further methodological development, including model validation, error analysis, decision-support framing, and evaluation of potential clinical, operational, and economic value.
 
@@ -37,7 +37,7 @@ The purpose of this project is to explore prediction modelling methods and to id
 
 ## Data Readiness and Real-World Implementation
 
-This project uses MIMIC-IV, a structured and de-identified critical care research dataset. While this supports proof-of-concept modeling, real-world deployment of ICU prediction tools would require careful assessment of data readiness.
+This project uses MIMIC-IV, a structured and de-identified critical care research dataset. While this supports proof-of-concept modelling, real-world deployment of ICU prediction tools would require careful assessment of data readiness.
 
 In hospital settings, relevant ICU data may be distributed across electronic health records, ICU monitoring systems, laboratory systems, medication records, and administrative platforms. For AI-enabled decision support, data integration alone may not be sufficient. Data also need to be unified, harmonized, deduplicated, time-aligned, and structured for reliable analytics and model development.
 
@@ -234,7 +234,7 @@ The next stage of this work is to move beyond prediction accuracy and develop a 
 Future work may include:
 
 - Strengthening model validation and calibration assessment;
-- Comparing alternative modeling approaches, such as XGBoost or Random Forest;
+- Comparing alternative modelling approaches, such as XGBoost or Random Forest;
 - Including time-series clinical variables, such as vital signs and laboratory results;
 - Translating ICU LOS predictions into decision-support categories, such as low, medium, and high expected length of stay;
 - Identifying operational outcomes relevant to ICU capacity planning, such as delayed discharge, bed availability, staffing pressure, and patient flow;
