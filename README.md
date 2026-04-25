@@ -27,17 +27,13 @@ The project demonstrates how routinely available clinical and administrative var
 This project is not intended to present a clinically ready AI tool. Instead, it uses preliminary proof-of-concept work as a foundation for further methodological development, including model validation, error analysis, decision-support framing, and evaluation of potential clinical, operational, and economic value.
 
 ---
+## Data Readiness and Real-World Implementation
 
-## 🎯 Research and Operational Relevance
+This project uses MIMIC-IV, a structured and de-identified critical care research dataset. While this supports proof-of-concept modeling, real-world deployment of ICU prediction tools would require careful assessment of data readiness.
 
-ICU LOS prediction may support future research on how hospitals could improve:
+In hospital settings, relevant ICU data may be distributed across electronic health records, ICU monitoring systems, laboratory systems, medication records, and administrative platforms. For AI-enabled decision support, data integration alone may not be sufficient. Data also need to be unified, harmonized, deduplicated, time-aligned, and structured for reliable analytics and model development.
 
-- **ICU Operations:** ICU bed utilisation and capacity planning
-- **Staffing & Resources:** Planning and allocation of clinical resources
-- **Patient Flow:** Identification of potential bottlenecks and delays
-- **Cost Efficiency:** Exploratory assessment of resource use and economic value
-
-This proof-of-concept may be relevant to data-driven hospital systems interested in ICU capacity planning, patient flow, staffing, and resource allocation. However, further validation, workflow evaluation, and prospective testing would be required before any clinical or operational implementation.
+This highlights an important implementation consideration: the value of AI-enabled ICU decision support depends not only on model performance, but also on the quality, interoperability, and usability of the underlying clinical data infrastructure.
 
 ---
 
@@ -200,6 +196,19 @@ sql/
 
 6. 🔍 **Analyze Results**
    - Execute `09_analyze_feature_importance.sql`
+
+## 🎯 Research and Operational Relevance
+
+ICU LOS prediction may support future research on how hospitals could improve:
+
+- **ICU Operations:** ICU bed utilisation and capacity planning
+- **Staffing & Resources:** Planning and allocation of clinical resources
+- **Patient Flow:** Identification of potential bottlenecks and delays
+- **Cost Efficiency:** Exploratory assessment of resource use and economic value
+
+This proof-of-concept may be relevant to data-driven hospital systems interested in ICU capacity planning, patient flow, staffing, and resource allocation. However, further validation, workflow evaluation, and prospective testing would be required before any clinical or operational implementation.
+
+---
   
  ## Limitations
 
