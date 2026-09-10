@@ -155,6 +155,7 @@ Models were compared on the same **18,955 held-out ICU stays** using:
 - Performance across major diagnosis groups
 
 Additional analyses examined prolonged ICU stays and diagnosis-specific modelling to determine whether underprediction was primarily related to outcome transformation, patient heterogeneity, or the long-stay tail.
+
 ---
 
 ## 📈 Results
