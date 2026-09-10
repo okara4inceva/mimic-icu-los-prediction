@@ -77,30 +77,84 @@ Most ICU stays were relatively short, while a progressively smaller proportion e
 The log transformation produced a substantially more symmetric outcome distribution.
 
 ---
-
 ## ⚙️ Methodology
 
-### 1. Data Processing
-- Extracted ICU stays from raw clinical tables
-- Cleaned missing and inconsistent values
-- Filtered LOS between 0–30 days to remove extreme outliers
+### 1. Cohort Construction
+
+ICU stays were extracted from MIMIC-IV and linked with demographic, admission, procedure, care-unit, and diagnosis information.
+
+The updated analytical cohort contains **94,444 unique ICU stays** with complete LOS information.
+
+Unlike the earlier proof-of-concept analysis, the updated analysis retains the **full observed LOS range** rather than excluding stays above 30 days. This was done to investigate whether previously observed underprediction was driven by exclusion of prolonged ICU stays.
 
 ### 2. Feature Engineering
-Key features include:
-- Demographics: age, gender  
-- Clinical context: admission type, care unit  
-- Clinical complexity: number of procedures  
-- Diagnosis grouping  
 
-### 3. Model Development
-- **Model:** Linear Regression (BigQuery ML)
-- **Target:** Log-transformed LOS
-- **Rationale:** Improve stability and handle skewed distribution
+The modelling dataset includes:
 
-### 4. Evaluation
-- Metric: **Mean Absolute Error (MAE)**
-- Evaluation performed on predicted vs actual LOS
+- Age at ICU admission
+- Gender
+- Admission type
+- First ICU care unit
+- Number of procedures
+- Principal diagnosis group
 
+The same predictor set was used for the pooled raw-LOS and log-LOS comparison models.
+
+### 3. Train/Test Design
+
+A fixed train/test split was used for the updated model comparison:
+
+| Dataset | ICU stays |
+|---|---:|
+| Training set | **75,489** |
+| Test set | **18,955** |
+| Total | **94,444** |
+
+There was **no overlap** between training and test ICU stays.
+
+Both comparison models were trained on exactly the same training observations and evaluated on exactly the same held-out test observations.
+
+### 4. Raw vs Log-Transformed LOS Models
+
+Two linear regression models were developed in BigQuery ML using identical predictors:
+
+- **Raw LOS model:** directly predicts ICU LOS in days
+- **Log LOS model:** predicts the natural logarithm of ICU LOS
+
+The purpose of this comparison was to test whether the substantial improvement in distributional symmetry after log transformation also translated into better predictive performance on the original day scale.
+
+### 5. Retransformation to Days
+
+Predictions from the log-scale model were evaluated using two approaches:
+
+1. **Naive retransformation**
+
+   `predicted LOS = exp(predicted log LOS)`
+
+2. **Duan smearing correction**
+
+   A smearing factor was estimated using residuals from the training data only:
+
+   **Duan smearing factor = 1.4153**
+
+   Corrected predictions were calculated as:
+
+   `predicted LOS = exp(predicted log LOS) × 1.4153`
+
+This approach was used to assess and reduce retransformation bias without using information from the held-out test set.
+
+### 6. Model Evaluation
+
+Models were compared on the same **18,955 held-out ICU stays** using:
+
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- Mean prediction bias
+- R²
+- Error stratification by actual LOS
+- Performance across major diagnosis groups
+
+Additional analyses examined prolonged ICU stays and diagnosis-specific modelling to determine whether underprediction was primarily related to outcome transformation, patient heterogeneity, or the long-stay tail.
 ---
 
 ## 📈 Results
