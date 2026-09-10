@@ -303,7 +303,9 @@ mimic-icu-los-prediction/
     ├── 15_create_test_prediction_comparison.sql
     ├── 16_train_diagnosis_specific_models.sql
     └── 17_evaluate_diagnosis_specific_models.sql
----
+    
+    ```
+
 
 ## ▶️ How to Run
 
