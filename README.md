@@ -277,7 +277,7 @@ Broad diagnosis-specific models provided only limited improvement, suggesting th
 
 ## 📁 Project Structure
 
-```text
+<pre>
 mimic-icu-los-prediction/
 │
 ├── README.md
@@ -303,8 +303,9 @@ mimic-icu-los-prediction/
     ├── 15_create_test_prediction_comparison.sql
     ├── 16_train_diagnosis_specific_models.sql
     └── 17_evaluate_diagnosis_specific_models.sql
-    
-    ```
+</pre>
+
+The original `01–09` scripts document the first proof-of-concept workflow. Scripts `10–17` document the updated validation analyses, including matched raw/log modelling, retransformation, prolonged-stay evaluation, and diagnosis-specific experiments.
 
 
 ## ▶️ How to Run
