@@ -322,8 +322,7 @@ The updated analyses assume that the analytical ICU dataset and predefined train
 - Access to MIMIC-IV through PhysioNet
 - Google Cloud / BigQuery
 - BigQuery ML enabled
-- Prepared analytical table:
-  `mimic_results.icu_ml_dataset_rebuilt`
+- Prepared analytical table: `mimic_results.icu_ml_dataset_rebuilt`
 - Predefined training and test ICU stay IDs
 
 The final analytical cohort contains **94,444 unique ICU stays**, divided into:
@@ -334,14 +333,73 @@ The final analytical cohort contains **94,444 unique ICU stays**, divided into:
 
 ### Updated analysis workflow
 
-#### Step 1 — Train matched raw and log LOS models
+### Step 1 — Train matched raw and log LOS models
 
-Run:
+Run `14_train_updated_comparison_models.sql`.
 
-```text
-14_train_updated_comparison_models.sql
+This creates two linear regression models using the same training observations and predictor set:
 
----
+- Raw ICU LOS model
+- Log-transformed ICU LOS model
+
+Both models use `data_split_method = 'NO_SPLIT'` because the train/test cohorts were defined before model fitting.
+
+### Step 2 — Calculate the Duan smearing factor
+
+Run `13_duan_smearing_factor.sql`.
+
+The smearing factor is estimated from **training residuals only**.
+
+The observed factor in this analysis was **1.415317684**.
+
+### Step 3 — Generate matched held-out predictions
+
+Run `15_create_test_prediction_comparison.sql`.
+
+This generates predictions for the same **18,955 held-out ICU stays** from:
+
+- Raw LOS model
+- Log LOS model with naive retransformation
+- Log LOS model with Duan smearing correction
+
+### Step 4 — Compare overall predictive performance
+
+Run `10_compare_raw_vs_log_model_performance.sql`.
+
+This calculates MAE, RMSE, mean prediction bias, and R² for all three prediction approaches.
+
+### Step 5 — Evaluate performance across LOS groups
+
+Run `11_model_performance_by_los_group.sql`.
+
+Performance is examined separately for:
+
+- <3 days
+- 3–<7 days
+- 7–<14 days
+- 14+ days
+
+### Step 6 — Evaluate performance across diagnosis groups
+
+Run `12_model_performance_by_diagnosis_group.sql`.
+
+This compares model behaviour across the six largest diagnosis groups in the held-out test cohort.
+
+### Step 7 — Train diagnosis-specific models
+
+Run `16_train_diagnosis_specific_models.sql`.
+
+Separate raw-LOS models are trained for infectious/parasitic and circulatory diagnosis groups.
+
+### Step 8 — Compare pooled and diagnosis-specific models
+
+Run `17_evaluate_diagnosis_specific_models.sql`.
+
+This evaluates whether diagnosis-specific modelling improves prediction overall or within prolonged-stay subgroups.
+
+### Reproducibility note
+
+The same held-out test cohort is used throughout the updated model comparison. No test-set outcomes are used for model training or estimation of the Duan smearing factor.
 
 ## 🎯 Research and Operational Relevance
 
@@ -356,14 +414,31 @@ This proof-of-concept may be relevant to data-driven hospital systems interested
 
 ---
   
- ## Limitations
+ ## ⚠️ Limitations
 
-- This is a retrospective analysis based on de-identified MIMIC-IV data.
-- The model has not been externally validated on another hospital dataset.
-- The project does not evaluate real-world clinical implementation.
-- Prediction accuracy does not automatically translate into clinical, operational, or economic value.
-- Long-stay ICU patients remain more difficult to predict, which is important because they may be the most operationally relevant group for capacity planning.
-- Further work is needed to assess workflow integration, decision impact, health economic value, and prospective performance.
+This project is a retrospective methodological proof-of-concept and should not be interpreted as a clinically validated prediction system.
+
+Several limitations are important when interpreting the results:
+
+- **Single-dataset setting:** The analysis uses MIMIC-IV and has not yet been externally validated in another hospital or health system.
+
+- **Limited predictor set:** The current models use demographic, admission, care-unit, procedure-count, and broad diagnosis-group variables. They do not yet incorporate richer time-varying clinical information such as laboratory results, vital signs, organ-support requirements, severity scores, medications, or treatment trajectories.
+
+- **Broad diagnostic categories:** Diagnosis groups provide useful clinical stratification, but they may be too heterogeneous to capture the mechanisms associated with prolonged ICU stay.
+
+- **Linear modelling framework:** The comparison intentionally used matched linear regression models to isolate the effect of raw versus log-transformed LOS. More flexible models may capture nonlinear relationships and interactions more effectively.
+
+- **Retransformation remains consequential:** Log transformation substantially reduced outcome skewness, but predictions must ultimately be interpreted on the original day scale. Naive retransformation produced systematic downward bias, while Duan smearing reduced overall bias without improving every predictive metric.
+
+- **Aggregate performance can conceal clinically important error:** Overall MAE, RMSE, bias, and R² do not fully describe model behaviour. In particular, acceptable average performance masked substantial underprediction among prolonged ICU stays.
+
+- **Long-stay prediction remains difficult:** Patients with ICU LOS of 14 days or longer were consistently underpredicted across the evaluated modelling approaches, including pooled and diagnosis-specific models.
+
+- **No prospective workflow evaluation:** The models have not been integrated into ICU decision-making, bed-management processes, or clinical workflows.
+
+- **No demonstrated economic value:** Prediction accuracy alone does not establish clinical, operational, or economic benefit. The downstream consequences of acting on predictions — including bed utilisation, staffing, resource allocation, opportunity cost, and patient outcomes — require separate evaluation.
+
+These limitations are therefore not simply technical constraints; they define the main questions for the next stage of the research.
 
 ## 🚀Future Research Direction
 
