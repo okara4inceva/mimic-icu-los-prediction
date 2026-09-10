@@ -44,15 +44,37 @@ In hospital settings, relevant ICU data may be distributed across electronic hea
 This highlights an important implementation consideration: the value of AI-enabled ICU decision support depends not only on model performance, but also on the quality, interoperability, and usability of the underlying clinical data infrastructure.
 
 ---
-
 ## 📊 Dataset
 
 - **Source:** MIMIC-IV (PhysioNet)
-- **Population:** ICU patients
-- **Target Variable:** Length of Stay (LOS) in days
-- **Challenge:** Right-skewed distribution of LOS
+- **Population:** ICU stays
+- **Analytical cohort:** 94,444 unique ICU stays
+- **Target variable:** ICU length of stay (LOS) in days
+- **Median LOS:** 1.97 days
+- **Mean LOS:** 3.63 days
+- **P90:** 7.92 days
+- **P95:** 12.68 days
+- **P99:** 26.44 days
+- **Maximum observed LOS:** 226.40 days
 
-✔ **Solution:** Applied log transformation to stabilize variance and improve model performance
+The raw ICU LOS distribution was strongly right-skewed. Log transformation substantially reduced this asymmetry, but the updated analysis showed that improved distributional behaviour did not automatically translate into better prediction performance on the original day scale.
+
+| Outcome scale | Skewness |
+|---|---:|
+| Raw ICU LOS | **6.25** |
+| Log-transformed ICU LOS | **0.14** |
+
+### Raw ICU LOS distribution
+
+![Raw ICU LOS distribution](figures/raw_los_distribution.png)
+
+Most ICU stays were relatively short, while a progressively smaller proportion extended into a long right tail.
+
+### Log-transformed ICU LOS distribution
+
+![Log-transformed ICU LOS distribution](figures/log_los_distribution.png)
+
+The log transformation produced a substantially more symmetric outcome distribution.
 
 ---
 
