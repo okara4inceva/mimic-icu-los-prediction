@@ -401,14 +401,23 @@ The same held-out test cohort is used throughout the updated model comparison. N
 
 ## 🎯 Research and Operational Relevance
 
-ICU LOS prediction may support future research on how hospitals could improve:
+ICU length-of-stay prediction is potentially valuable not simply because LOS can be estimated, but because better anticipation of resource-intensive stays may support more informed operational decisions.
 
-- **ICU Operations:** ICU bed utilisation and capacity planning
-- **Staffing & Resources:** Planning and allocation of clinical resources
-- **Patient Flow:** Identification of potential bottlenecks and delays
-- **Cost Efficiency:** Exploratory assessment of resource use and economic value
+The updated analysis suggests that the greatest modelling challenge lies in the **prolonged-stay tail** — the group of patients whose ICU utilisation may have disproportionate implications for bed occupancy, staffing, resource consumption, and patient flow.
 
-This proof-of-concept may be relevant to data-driven hospital systems interested in ICU capacity planning, patient flow, staffing, and resource allocation. However, further validation, workflow evaluation, and prospective testing would be required before any clinical or operational implementation.
+Potential future applications include:
+
+- **ICU capacity planning:** anticipating bed occupancy and pressure on constrained ICU capacity;
+- **Staffing and resource allocation:** supporting planning for nursing, clinical, and other resource requirements;
+- **Patient flow:** identifying patients who may contribute to prolonged bed occupancy or downstream bottlenecks;
+- **Resource-use estimation:** linking predicted LOS with expected bed-days and other utilisation measures;
+- **Health-economic evaluation:** assessing whether model-guided decisions generate sufficient operational or clinical benefit to justify implementation.
+
+From a health-economics perspective, the important question is not only whether prediction error can be reduced, but whether improved prediction changes decisions and produces meaningful value.
+
+This requires consideration of the consequences of prediction errors, including false-positive and false-negative identification of prolonged stays, as well as the **opportunity cost of constrained ICU capacity**.
+
+The current project does not demonstrate such value. Rather, it provides a methodological foundation for future decision-analytic, operational, and economic evaluation of AI-enabled ICU decision support.
 
 ---
   
