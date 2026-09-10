@@ -158,31 +158,73 @@ Additional analyses examined prolonged ICU stays and diagnosis-specific modellin
 
 ---
 
-## 📈 Results
+## 📈 Updated Results
 
-The preliminary model achieved an MAE of 1.76 days in this retrospective analysis. However, performance was weaker for longer ICU stays, highlighting the importance of subgroup analysis, error interpretation, and careful evaluation before any real-world use.
+### Overall Model Performance
 
-**Model evaluation reveals:**
-- Increasing prediction variance as LOS increases  
-- Systematic underprediction for LOS > 10 days  
-- Reduced calibration for long-stay patients
+All models were evaluated on the same **18,955 held-out ICU stays**.
 
-   ### 🧠 Model Evaluation Approach
+| Model | MAE (days) | RMSE (days) | Bias (days) | R² |
+|---|---:|---:|---:|---:|
+| Log LOS – naive retransformation | **2.21** | 4.53 | -1.09 | 0.115 |
+| Log LOS – Duan smearing | 2.37 | 4.61 | **-0.07** | 0.084 |
+| Raw LOS model | 2.40 | **4.11** | +0.07 | **0.271** |
 
-Beyond standard error metrics, model performance was evaluated using 
-visual analysis of predicted vs actual values.
+No single modelling approach performed best across all metrics.
 
-A reference line (y = x) was used to assess calibration and identify 
-systematic deviations in model predictions.
+The naive log model achieved the lowest overall MAE, but it showed systematic downward bias. Duan smearing substantially reduced this overall bias. The raw-scale model achieved the lowest RMSE and highest R², although it produced 140 non-positive LOS predictions, which are not clinically plausible.
 
-This approach enables deeper understanding of where the model performs well 
-and where it fails — critical for real-world healthcare applications.
-  
-### 🔍 Key Predictive Features
-- Admission type  
-- Number of procedures  
-- Care unit  
-- Patient demographics  
+### Prolonged-Stay Performance
+
+Aggregate metrics masked an important pattern: model error increased substantially with actual ICU length of stay.
+
+| Actual LOS group | N | Mean actual LOS | Raw model prediction | Log + smearing prediction | Raw model MAE |
+|---|---:|---:|---:|---:|---:|
+| <3 days | 12,666 | 1.47 | 2.84 | 2.85 | 1.71 |
+| 3–<7 days | 4,050 | 4.46 | 4.21 | 3.82 | 1.94 |
+| 7–<14 days | 1,538 | 9.76 | 6.16 | 5.39 | 4.28 |
+| 14+ days | 701 | **22.40** | **8.89** | **8.84** | **13.56** |
+
+The major modelling limitation was persistent underprediction among prolonged ICU stays.
+
+For patients staying **14 days or longer**, the mean observed LOS was **22.40 days**, while both the raw and smearing-corrected log models predicted approximately **8.9 days** on average.
+
+This underprediction persisted even after:
+
+- retaining the full observed LOS range;
+- correcting retransformation bias;
+- stratifying performance by diagnosis group.
+
+### Diagnosis-Specific Modelling
+
+LOS distributions differed meaningfully across major diagnosis groups. However, training separate broad diagnosis-specific models produced little overall improvement over the pooled model.
+
+| Diagnosis-specific experiment | Pooled RAW MAE | Specific-model MAE |
+|---|---:|---:|
+| Infectious and parasitic diseases | 3.257 | 3.248 |
+| Diseases of the circulatory system | **2.255** | 2.275 |
+
+Diagnosis-specific models provided modest improvement in some prolonged-stay subgroups, but substantial underprediction remained.
+
+For example, among infectious-disease patients with LOS ≥14 days:
+
+- Mean actual LOS: **22.62 days**
+- Pooled model prediction: **9.34 days**
+- Infectious-specific prediction: **10.20 days**
+
+Among circulatory patients with LOS ≥14 days:
+
+- Mean actual LOS: **22.38 days**
+- Pooled model prediction: **8.67 days**
+- Circulatory-specific prediction: **9.22 days**
+
+### Key Finding
+
+The updated analysis suggests that the main challenge is not simply the choice between raw and log-transformed LOS.
+
+**The most persistent modelling problem is identifying and accurately predicting the prolonged-stay tail.**
+
+This is particularly important for future ICU decision-support and health-economic evaluation because long-stay patients may account for disproportionate bed occupancy, staffing requirements, resource use, and opportunity cost.
 
 ---
 ## 📊 Dashboard (Power BI)
