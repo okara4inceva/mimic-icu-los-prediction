@@ -1,4 +1,4 @@
-# ICU Length of Stay Prediction & Model Evaluation using BigQuery ML
+# ICU Length-of-Stay Prediction & Model Evaluation using BigQuery ML
 
 ![BigQuery](https://img.shields.io/badge/BigQuery-ML-blue)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-lightgrey)
@@ -8,13 +8,11 @@
 ![Status](https://img.shields.io/badge/status-research--prototype-green)
 
 ---
-**ICU Length-of-Stay Prediction Using MIMIC-IV**
+**A retrospective MIMIC-IV proof-of-concept exploring ICU length-of-stay prediction, retransformation bias, prolonged-stay error, and the potential value of prediction for ICU resource planning.**
 
-A retrospective proof-of-concept project exploring ICU length-of-stay prediction and its potential evaluation as AI-enabled decision support for capacity planning.
+The updated analysis compares raw and log-transformed LOS models on the same held-out cohort, evaluates Duan smearing correction, examines performance across LOS strata and diagnosis groups, and identifies persistent underprediction of prolonged ICU stays.
 
-![ICU LOS Dashboard](images/dashboard.png) 
-
-This dashboard bridges technical model outputs with clinical and operational decision-making.
+> **Key finding:** Improving the statistical distribution of LOS does not necessarily improve prediction on the original day scale. The most persistent modelling challenge was the prolonged-stay tail.
 
 ---
 ## 📌 Project Overview
