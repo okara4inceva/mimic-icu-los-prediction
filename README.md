@@ -305,29 +305,37 @@ mimic-icu-los-prediction/
     └── 17_evaluate_diagnosis_specific_models.sql
 
 ## ▶️ How to Run
-1. 📥 **Load Data**
-   - Import dataset (for this project I imported MIMIC-IV dataset) into BigQuery  
 
-2. 🧹 **Run Data Pipeline**
-   - Execute SQL scripts in order:
-     - `01_extract_data.sql`
-     - `02_clean_data.sql`
-     - `03_build_dataset.sql`
-     - `04_engineer_features.sql`
-     - `05_finalize_features.sql`
+The project contains two stages:
 
-3. 🤖 **Train Model**
-   - Run `06_train_model_log.sql` using BigQuery ML  
+1. **Initial proof-of-concept workflow (`01–09`)**
+2. **Updated validation and sensitivity analyses (`10–17`)**
 
-4. 📊 **Generate Predictions**
-   - Execute `07_generate_predictions.sql`  
+The updated analyses assume that the analytical ICU dataset and predefined train/test cohorts have already been created.
 
-5. 📈 **Evaluate Performance**
-   - Run `08_evaluate_model_mae.sql`  
-   - Review MAE and error metrics  
+### Prerequisites
 
-6. 🔍 **Analyze Results**
-   - Execute `09_analyze_feature_importance.sql`
+- Access to MIMIC-IV through PhysioNet
+- Google Cloud / BigQuery
+- BigQuery ML enabled
+- Prepared analytical table:
+  `mimic_results.icu_ml_dataset_rebuilt`
+- Predefined training and test ICU stay IDs
+
+The final analytical cohort contains **94,444 unique ICU stays**, divided into:
+
+- **75,489 training stays**
+- **18,955 held-out test stays**
+- **0 overlap between training and test cohorts**
+
+### Updated analysis workflow
+
+#### Step 1 — Train matched raw and log LOS models
+
+Run:
+
+```text
+14_train_updated_comparison_models.sql
 
 ## 🎯 Research and Operational Relevance
 
