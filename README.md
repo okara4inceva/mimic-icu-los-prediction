@@ -440,19 +440,93 @@ Several limitations are important when interpreting the results:
 
 These limitations are therefore not simply technical constraints; they define the main questions for the next stage of the research.
 
-## 🚀Future Research Direction
+## 🔭 Future Research
 
-The next stage of this work is to move beyond prediction accuracy and develop a methodological framework for evaluating the potential value of AI-enabled ICU decision support.
+The updated analysis shifts the next research question away from simply asking whether ICU LOS should be modelled on the raw or log scale.
 
-Future work may include:
+The more important challenge is to understand, predict, and ultimately assess the value of identifying patients at risk of **prolonged ICU stay**.
 
-- Strengthening model validation and calibration assessment;
-- Comparing alternative modelling approaches, such as XGBoost or Random Forest;
-- Including time-series clinical variables, such as vital signs and laboratory results;
-- Translating ICU LOS predictions into decision-support categories, such as low, medium, and high expected length of stay;
-- Identifying operational outcomes relevant to ICU capacity planning, such as delayed discharge, bed availability, staffing pressure, and patient flow;
-- Exploring whether cost-consequence analysis or budget impact logic could be used to assess potential economic value;
-- Defining the methodological requirements for future external validation and prospective hospital-based pilot evaluation.
+Future work could therefore focus on the following directions:
+
+### 1. Richer predictors of prolonged ICU stay
+
+Extend the current baseline feature set with clinically meaningful information available during the ICU trajectory, including:
+
+- laboratory measurements;
+- vital signs;
+- organ-support requirements;
+- severity-of-illness indicators;
+- medication and intervention patterns;
+- temporal changes in patient condition.
+
+The objective would be to determine whether these variables improve identification of patients in the long-stay tail rather than merely improving average prediction error.
+
+### 2. Alternative modelling strategies
+
+Compare the current linear regression benchmark with modelling approaches better suited to nonlinear relationships, heterogeneous effects, and strongly right-skewed outcomes.
+
+Candidate approaches could include:
+
+- tree-based machine-learning models;
+- quantile regression;
+- Gamma or other positive-outcome regression models;
+- two-stage or hurdle-style approaches separating prolonged-stay risk from expected LOS;
+- survival or time-to-event modelling where appropriate.
+
+Model selection should be based not only on overall predictive accuracy but also on calibration and performance within clinically and operationally important LOS groups.
+
+### 3. Dedicated prolonged-stay prediction
+
+Rather than treating extreme LOS values as observations to be excluded, future analyses should explicitly investigate them.
+
+A clinically meaningful prolonged-stay threshold could be evaluated as a separate prediction target, followed by estimation of expected LOS or resource utilisation among patients identified as high risk.
+
+This may provide a more operationally useful framework than attempting to predict the entire LOS distribution with a single regression model.
+
+### 4. Uncertainty and subgroup performance
+
+Future validation should examine prediction uncertainty and model behaviour across clinically relevant subgroups.
+
+This includes assessment of:
+
+- calibration;
+- prediction intervals or other uncertainty measures;
+- diagnostic and demographic heterogeneity;
+- performance across care units;
+- systematic error among high-resource-use patients.
+
+### 5. External and prospective validation
+
+The current findings should be tested in independent hospital populations before considering real-world implementation.
+
+External validation would help assess transportability, while prospective evaluation would be required to understand model behaviour within actual ICU workflows.
+
+### 6. Operational and health-economic evaluation
+
+A prediction model should ultimately be evaluated according to the decisions it can improve, not prediction accuracy alone.
+
+Future work could therefore link model outputs to questions such as:
+
+- ICU bed-capacity planning;
+- staffing and resource allocation;
+- patient-flow management;
+- expected bed-days and resource utilisation;
+- opportunity cost associated with constrained ICU capacity;
+- consequences of false-positive and false-negative prolonged-stay predictions.
+
+A decision-analytic or simulation framework could then compare alternative model-guided strategies with current practice and evaluate whether improved prediction generates meaningful clinical, operational, or economic value.
+
+### Research direction
+
+The central question for the next stage is therefore not simply:
+
+**“Can ICU length of stay be predicted more accurately?”**
+
+but:
+
+**“Can earlier identification of prolonged ICU utilisation support better decisions, and is the resulting information valuable enough to change resource allocation or patient-flow outcomes?”**
+
+This distinction provides a pathway from predictive modelling toward clinically relevant and health-economic evaluation of AI-enabled ICU decision support.
 
 ## 👩‍💻 Author
 **Olga Karachyntseva**  
