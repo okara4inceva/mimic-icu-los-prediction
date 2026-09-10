@@ -187,6 +187,8 @@ Aggregate metrics masked an important pattern: model error increased substantial
 
 The major modelling limitation was persistent underprediction among prolonged ICU stays.
 
+![Actual vs predicted ICU LOS by LOS group](figures/long_stay_prediction_performance.png)
+
 For patients staying **14 days or longer**, the mean observed LOS was **22.40 days**, while both the raw and smearing-corrected log models predicted approximately **8.9 days** on average.
 
 This underprediction persisted even after:
