@@ -535,7 +535,16 @@ but:
 
 This distinction provides a pathway from predictive modelling toward clinically relevant and health-economic evaluation of AI-enabled ICU decision support.
 
+## 📚 References
+
+1. Johnson AEW, Bulgarelli L, Shen L, et al. **MIMIC-IV, a freely accessible electronic health record dataset.** *Scientific Data*. 2023;10:1. DOI: `10.1038/s41597-022-01899-x`
+
+2. Duan N. **Smearing Estimate: A Nonparametric Retransformation Method.** *Journal of the American Statistical Association*. 1983;78(383):605–610. DOI: `10.1080/01621459.1983.10478017`
+
 ## 👩‍💻 Author
-**Olga Karachyntseva**  
-**Health Economics & Data Analytics | Healthcare ML**
-Bridging clinical data, machine learning, and health economics to support data-driven decision-making in healthcare systems.
+
+**Olga Karachyntseva**
+
+**Health Economics | Healthcare Data Analytics | Machine Learning**
+
+Bridging clinical data, predictive modelling, and health economics to support evidence-informed decision-making in healthcare systems.
