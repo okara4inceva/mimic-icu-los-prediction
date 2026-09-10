@@ -189,11 +189,11 @@ The major modelling limitation was persistent underprediction among prolonged IC
 
 For patients staying **14 days or longer**, the mean observed LOS was **22.40 days**, while both the raw and smearing-corrected log models predicted approximately **8.9 days** on average.
 
-This underprediction persisted even after:
+This underprediction remained evident when:
 
-- retaining the full observed LOS range;
-- correcting retransformation bias;
-- stratifying performance by diagnosis group.
+- the full observed LOS range was retained;
+- retransformation bias was addressed;
+- performance was examined across major diagnosis groups.
 
 ### Diagnosis-Specific Modelling
 
@@ -420,7 +420,6 @@ This requires consideration of the consequences of prediction errors, including 
 The current project does not demonstrate such value. Rather, it provides a methodological foundation for future decision-analytic, operational, and economic evaluation of AI-enabled ICU decision support.
 
 ---
-  
  ## ⚠️ Limitations
 
 This project is a retrospective methodological proof-of-concept and should not be interpreted as a clinically validated prediction system.
