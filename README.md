@@ -278,17 +278,32 @@ Broad diagnosis-specific models provided only limited improvement, suggesting th
 ## 📁 Project Structure
 
 ```text
-sql/
-├── 01_extract_data.sql
-├── 02_clean_data.sql
-├── 03_build_dataset.sql
-├── 04_engineer_features.sql
-├── 05_finalize_features.sql
-├── 06_train_model_log.sql
-├── 07_generate_predictions.sql
-├── 08_evaluate_model_mae.sql
-├── 09_analyze_feature_importance.sql
-```
+mimic-icu-los-prediction/
+│
+├── README.md
+├── LICENSE
+├── figures/
+│   ├── raw_los_distribution.png
+│   ├── log_los_distribution.png
+│   └── long_stay_prediction_performance.png
+│
+├── images/
+│   └── Power BI dashboard and supporting visuals
+│
+├── sample_outputs/
+│   └── Example aggregate outputs
+│
+└── sql/
+    ├── 01–09  Initial proof-of-concept workflow
+    ├── 10_compare_raw_vs_log_model_performance.sql
+    ├── 11_model_performance_by_los_group.sql
+    ├── 12_model_performance_by_diagnosis_group.sql
+    ├── 13_duan_smearing_factor.sql
+    ├── 14_train_updated_comparison_models.sql
+    ├── 15_create_test_prediction_comparison.sql
+    ├── 16_train_diagnosis_specific_models.sql
+    └── 17_evaluate_diagnosis_specific_models.sql
+
 ## ▶️ How to Run
 1. 📥 **Load Data**
    - Import dataset (for this project I imported MIMIC-IV dataset) into BigQuery  
