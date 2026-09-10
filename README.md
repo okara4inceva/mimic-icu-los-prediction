@@ -229,61 +229,49 @@ The updated analysis suggests that the main challenge is not simply the choice b
 This is particularly important for future ICU decision-support and health-economic evaluation because long-stay patients may account for disproportionate bed occupancy, staffing requirements, resource use, and opportunity cost.
 
 ---
-## 📊 Dashboard (Power BI)
+## 📊 Power BI Dashboard
 
-A Power BI dashboard was developed to translate model outputs into actionable insights.
+A Power BI dashboard was developed during the initial proof-of-concept phase to translate prediction outputs into a more operationally interpretable format.
 
-Key capabilities:
-- Visual comparison of predicted vs actual ICU LOS
-- Model calibration assessment using reference line (y = x)
-- Monitoring of prediction error metrics (MAE, max error)
-- Identification of model limitations in long-stay patients 
+The dashboard supports:
 
-Tools:
-- Power BI  
-- Google BigQuery integration
+- Visual comparison of predicted versus actual ICU LOS
+- Identification of systematic prediction error
+- Monitoring of model performance metrics
+- Exploration of model behaviour among longer-stay patients
 
-  ### 📊 Power BI Dashboard – Model Evaluation
+The dashboard should be interpreted as an **analytical prototype**, not as a clinically deployed decision-support tool.
 
-To support interpretability and real-world adoption, a Power BI dashboard was developed to visualize model performance and prediction behavior.
+The updated analysis presented above extends the original dashboard findings by formally examining:
 
-#### Key Visuals:
+- raw versus log-transformed LOS;
+- retransformation bias;
+- Duan smearing correction;
+- performance across LOS strata;
+- diagnosis-group heterogeneity;
+- diagnosis-specific modelling.
 
-- **Actual vs Predicted LOS Scatter Plot**  
-  Enables direct comparison between predicted and actual ICU length of stay.
+### Why this matters
 
-- **Reference Line (y = x)**  
-  A perfect prediction line is overlaid to assess model calibration and deviation.
+Prediction accuracy alone is not sufficient to establish the value of an ICU prediction model.
 
-- **Model Performance KPIs**  
-  - Average LOS  
-  - Predicted LOS  
-  - Mean Absolute Error (MAE)  
-  - Maximum Error  
+A model may perform reasonably well on average while still performing poorly for the patients who are most operationally important.
 
-- **Insight Panel**  
-  Highlights key model behavior for decision-makers.
+In this analysis, prolonged ICU stays represented a relatively small proportion of observations but showed substantially larger prediction errors. This distinction is particularly relevant when considering future applications in:
 
-#### Key Findings:
+- ICU bed capacity planning
+- staffing and resource allocation
+- patient flow
+- opportunity cost
+- health-economic evaluation of AI-enabled decision support
 
-- Model shows **systematic underprediction for LOS > 10 days**
-- **Prediction variance increases** with longer ICU stays
-- Indicates **reduced model calibration for long-stay patients**
+### Updated analytical insight
 
-These insights are critical for identifying limitations of the model and guiding further improvements.
+Log transformation substantially improved the statistical distribution of ICU LOS, but it did not eliminate the key predictive limitation.
 
----
-### 💡 Why This Matters
+The central challenge identified in the updated analysis is the **persistent underprediction of prolonged ICU stays**.
 
-- This project demonstrates how machine learning models in healthcare must be evaluated beyond accuracy metrics.
-- Understanding where models fail — particularly in long-stay ICU patients — is critical for safe and effective real-world deployment.
-
----
-## 🧠 Key Insight
-
-Applying a log transformation to ICU LOS helped address the right-skewed distribution commonly observed in hospital length-of-stay data.
-
-However, long-stay ICU patients remained more difficult to predict, highlighting the importance of subgroup analysis, calibration assessment, and careful interpretation before considering any real-world use.
+Broad diagnosis-specific models provided only limited improvement, suggesting that future work should focus on richer predictors of prolonged ICU utilisation rather than relying solely on outcome transformation or broad diagnostic stratification.
 
 ---
 
